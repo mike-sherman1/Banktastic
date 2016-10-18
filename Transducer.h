@@ -5,9 +5,6 @@
 
 using namespace std;
 
-
-
-
 class Transducer
 {
 public:
