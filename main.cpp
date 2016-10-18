@@ -8,7 +8,8 @@
 
 using namespace std;
 
-void commandLineInterface(Transducer & t)
+//CLI without meta commands
+/*void commandLineInterface(Transducer & t)
 {
 	string com;
 	cout << t.transduce("Help") << endl;
@@ -18,8 +19,9 @@ void commandLineInterface(Transducer & t)
 		getline(cin, com);
 		cout << t.transduce(com) << endl;
 	} while ((com != "Quit") && (com != "Q"));
-}
+}*/ 
 
+//used for batch files
 string getCommandFrom(ifstream & fin)
 {
 	string com;
@@ -76,7 +78,6 @@ void advancedCommandLineInterface(Transducer & t)
 			{
 				com = getCommandFrom(fin);
 			}
-
 
 			//META COMMANDS
 			if (com.substr(0, 5) == "BATCH")
