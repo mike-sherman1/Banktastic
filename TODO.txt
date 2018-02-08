@@ -1,3 +1,4 @@
-#write new "RandGen" class, lost file somehow
-#unassociate customer and account
-#customer / account lists do not show associations
+- write new "RandGen" class, lost file somehow
+  - file might be on PC somewhere, check tomorrow
+- unassociate customer and account
+- customer / account lists do not show associations
