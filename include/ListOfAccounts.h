@@ -127,7 +127,6 @@ public:
 	}
 
 private:
-	
 	string getListHeader()
 	{
 		string result;
@@ -139,7 +138,6 @@ private:
 		result += padRight("", '_', 10) + "\n";
 		return result;
 	}
-	
 	vector<Account> vAccounts;
 	map<int, int> indexByID;
 };

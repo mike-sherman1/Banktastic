@@ -1,6 +1,7 @@
 #include "../include/Transducer.h"
+#include "../include/misc.h"
 #include <vector>
-#include "misc.h"
+
 using namespace std;
 
 string Transducer::transduce(string command)
