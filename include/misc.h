@@ -12,7 +12,8 @@
 
 #include <string>
 #include <vector>
-//#include "RandGen.h"
+#include "RandGen.h"
+
 using namespace std;
 
 

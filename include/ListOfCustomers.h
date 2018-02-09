@@ -2,8 +2,8 @@
 
 #include <vector>
 #include <map>
-#include "Customer.h"
 #include <fstream>
+#include "Customer.h"
 #include "misc.h"
 
 using namespace std;

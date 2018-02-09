@@ -1,17 +1,16 @@
 #pragma once
 
 #include <vector>
-#include "Account.h"
 #include <map>
+#include "Account.h"
 #include "misc.h"
 
 using namespace std;
 
-class ListOfAccounts
-{
+class ListOfAccounts {
+
 public:
-	ListOfAccounts()
-	{
+	ListOfAccounts() {
 		ifstream inFile("actData.txt");
 		while (!inFile.eof())
 		{

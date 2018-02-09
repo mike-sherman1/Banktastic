@@ -8,13 +8,15 @@
 //
 // ***********************************************************************
 
-#include "../include/misc.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include <sstream>
+#include "../include/misc.h"
+#include "../include/RandGen.h"
+
 using namespace std;
 
-RandGen randGen(999);
+RandGen randGen;
 
 int randomInt(int lo, int hi)
 {

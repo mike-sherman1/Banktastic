@@ -1,3 +1,0 @@
-#write new "RandGen" class, lost file somehow
-#unassociate customer and account
-#customer / account lists do not show associations
