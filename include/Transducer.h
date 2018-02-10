@@ -5,9 +5,14 @@
 
 using namespace std;
 
-class Transducer {
+
+
+
+class Transducer
+{
 public:
 	string transduce(string command);
 private:
+	//Add main functional object here 
 	Bank bank;
 };

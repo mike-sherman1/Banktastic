@@ -1,12 +1,14 @@
 #pragma once
-
 #include <vector>
 #include <map>
-#include <fstream>
+//#include <hash_map>
+//#include <unordered_map>
 #include "Customer.h"
+#include <fstream>
 #include "misc.h"
 
 using namespace std;
+
 
 class ListOfCustomers
 {
@@ -153,26 +155,21 @@ public:
 		return true;
 #endif
 	}
-	
 	string clear()
 	{
 		vCustomer.clear();
 		return "All customers in list have been removed.";
 	}
-	
 	void associateAct(int cKey, int aKey)
 	{
 		getCusByID(cKey).accountIDs.push_back(aKey);
 	}
-	
 	void unassociateAct(int cKey, int aKey)
 	{
-		//stubbed
 		//getCusByID(cKey).accountIDs.push_back(aKey);
 	}
-
 private:
-	
+
 	string getListHeader()
 	{
 		string result;
@@ -184,6 +181,7 @@ private:
 		result += padRight("", '_', 9) + "\n";
 		return result;
 	}
+
 
 	vector<Customer> vCustomer;
 	map<int, int> indexByID;

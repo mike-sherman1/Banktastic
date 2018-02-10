@@ -1,16 +1,16 @@
 #pragma once
-
 #include <vector>
-#include <map>
 #include "Account.h"
+#include <map>
 #include "misc.h"
 
 using namespace std;
 
-class ListOfAccounts {
-
+class ListOfAccounts
+{
 public:
-	ListOfAccounts() {
+	ListOfAccounts()
+	{
 		ifstream inFile("actData.txt");
 		while (!inFile.eof())
 		{
@@ -32,7 +32,6 @@ public:
 		}
 		inFile.close();
 	}
-	
 	~ListOfAccounts()
 	{
 		ofstream outFile("actData.txt");
@@ -50,7 +49,6 @@ public:
 		}
 		outFile.close();
 	}
-	
 	string add(int bal, string type)
 	{
 		Account newAct(bal, type);
@@ -62,7 +60,6 @@ public:
 		indexByID[newAct.idNumber] = vAccounts.size() - 1;
 		return "Account " + newAct.getIDstring() + " was added.";
 	}
-	
 	string makeInactive(int key)
 	{
 		if (getActByID(key).balance > 0)
@@ -73,21 +70,18 @@ public:
 			return "Account is now inactive.";
 		}
 	}
-	
 	bool isIDUsed(int key)
 	{
 		map<int, int>::iterator fIter = indexByID.find(key);
 		if (fIter == indexByID.end()) return false;
 		return true;
 	}
-	
 	Account &getActByID(int key)
 	{
 		map<int, int>::iterator fIter = indexByID.find(key);
 		if (fIter == indexByID.end()) throw "Error: Invalid ID# " + intToString(key);
 		return vAccounts[(*fIter).second];
 	}
-	
 	string getList()
 	{
 		string result;
@@ -105,7 +99,6 @@ public:
 		}
 		return result;
 	}
-	
 	void addRand(int count)
 	{
 		for (int i = 0; i < count; i++)
@@ -113,18 +106,14 @@ public:
 			add(randomInt(1000000000, 9999999999), "Savings");
 		}
 	}
-	
 	void associateCus(int cKey, int aKey)
 	{
 		getActByID(aKey).customerIDs.push_back(cKey);
 	}
-	
 	void unassociateCus(int cKey, int aKey)
 	{
-		//stubbed
 		//getActByID(aKey).customerIDs.push_back(cKey);
 	}
-
 private:
 	string getListHeader()
 	{

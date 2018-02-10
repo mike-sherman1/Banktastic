@@ -1,3 +1,1 @@
-- compiles but doesnt run, maybe look for submission in email or fau website
-- unassociate customer and account
-- customer / account lists do not show associations
+- compile and run submission version

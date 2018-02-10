@@ -1,11 +1,12 @@
 #pragma once
-
 #include "misc.h"
+
+
+
 
 class Customer
 {
 	friend class ListOfCustomers;
-
 public:
 	Customer(string n, string p)
 	{
@@ -14,7 +15,6 @@ public:
 		getNewID();
 		isActive = true;
 	}
-	
 	Customer(int id, string n, string p, bool ia)
 	{
 		name = n;
@@ -28,11 +28,11 @@ public:
 		idNumber = randomInt(100000000, 900000000);
 	}
 
+
 	string getIDstring()
 	{
 		return intToString(idNumber);
 	}
-
 private:
 	string name;
 	string phoneNumber;

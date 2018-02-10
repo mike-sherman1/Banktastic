@@ -1,14 +1,14 @@
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <time.h>
-#include "../include/Transducer.h"
+#include "Transducer.h"
 
 using namespace std;
 
-//CLI without meta commands
-/*void commandLineInterface(Transducer & t)
+void commandLineInterface(Transducer & t)
 {
 	string com;
 	cout << t.transduce("Help") << endl;
@@ -18,24 +18,28 @@ using namespace std;
 		getline(cin, com);
 		cout << t.transduce(com) << endl;
 	} while ((com != "Quit") && (com != "Q"));
-}*/ 
+}
 
-//used for batch files
-string getCommandFrom(ifstream &fin) {
+string getCommandFrom(ifstream & fin)
+{
 	string com;
-	if (fin.eof()) {
+	if (fin.eof())
+	{
 		com = "ENDBATCH";
 	}
-	else {
+	else
+	{
 		getline(fin, com);
 	}
-	if (fin.eof() && com == "") {
+	if (fin.eof() && com == "")
+	{
 		com = "ENDBATCH";
 	}
 	return com;
 }
 
-string metaHelp() {
+string metaHelp()
+{
 	string result;
 	result += "Meta Commands:\n";
 	result += "--------------\n";
@@ -49,7 +53,8 @@ string metaHelp() {
 	return result;
 }
 
-void advancedCommandLineInterface(Transducer &t) {
+void advancedCommandLineInterface(Transducer & t)
+{
 	ifstream fin;
 	ofstream fout;
 	bool batchActive = false;
@@ -58,18 +63,24 @@ void advancedCommandLineInterface(Transducer &t) {
 	string com;
 	cout << metaHelp();
 	cout << t.transduce((string)"Help") << endl;
-	do {
-		try {
-			if (!batchActive) {
+	do
+	{
+		try
+		{
+			if (!batchActive)
+			{
 				cout << "[-> ";
 				getline(cin, com);
 			}
-			else {
+			else
+			{
 				com = getCommandFrom(fin);
 			}
 
+
 			//META COMMANDS
-			if (com.substr(0, 5) == "BATCH") {
+			if (com.substr(0, 5) == "BATCH")
+			{
 				string filename = com.substr(6);
 				fin.open(filename.c_str());
 				if (fin.fail())
@@ -78,65 +89,80 @@ void advancedCommandLineInterface(Transducer &t) {
 				}
 				batchActive = true;
 			}
-			else if (com == "ENDBATCH") {
+			else if (com == "ENDBATCH")
+			{
 				fin.close();
 				fin.clear();
 				batchActive = false;
 			}
-			else if (com.substr(0, 8) == "REDIRECT") {
+			else if (com.substr(0, 8) == "REDIRECT")
+			{
 				string filename = com.substr(9, 9999);
 				fout.open(filename.c_str());
 				redirectActive = true;
 			}
-			else if (com == "DIRECT") {
+			else if (com == "DIRECT")
+			{
 				fout.close();
 				fout.clear();
 				redirectActive = false;
 			}
-			else if (com == "TON") {
+			else if (com == "TON")
+			{
 				timerOn = true;
 			}
-			else if (com == "TOFF") {
+			else if (com == "TOFF")
+			{
 				timerOn = false;
 			}
-			else if (com == "METAHELP") {
-				if (redirectActive) {
+			else if (com == "METAHELP")
+			{
+				if (redirectActive)
+				{
 					fout << metaHelp();
 				}
-				else {
+				else
+				{
 					cout << metaHelp();
 				}
 			}
-			else {
+			else
+			{
 				string transducerResults;
 				clock_t startTime = clock();
 				transducerResults = t.transduce(com);
 				clock_t endTime = clock();
 				clock_t elapsedTime = endTime - startTime;
-				if (!redirectActive) {
+				if (!redirectActive)
+				{
 					if (batchActive && (com.length()>0))cout << endl << "[-> " + com << endl << endl;
 					if (transducerResults.length()>0) cout << transducerResults << endl;
 					if (timerOn) cout << "[" << elapsedTime << "ms]" << endl;
 				}
-				else {
+				else
+				{
 					if (batchActive && (com.length()>0))fout << endl << "[-> " + com << endl << endl;
 					if (transducerResults.length()>0) fout << transducerResults << endl;
 					if (timerOn) fout << "[" << elapsedTime << "ms]" << endl;
 				}
 			}
 		}
-		catch (string e) {
-			if (redirectActive) {
+		catch (string e)
+		{
+			if (redirectActive)
+			{
 				fout << e << endl;
 			}
-			else {
+			else
+			{
 				cout << e << endl;
 			}
 		}
 	} while ((com != "Quit") && (com != "Q"));
 }
 
-int main() {
+int main()
+{
 	Transducer transducer;
 	//commandLineInterface(transducer);
 	advancedCommandLineInterface(transducer);
