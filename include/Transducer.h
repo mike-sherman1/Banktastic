@@ -5,8 +5,7 @@
 
 using namespace std;
 
-class Transducer
-{
+class Transducer {
 public:
 	string transduce(string command);
 private:

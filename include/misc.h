@@ -16,7 +16,6 @@
 
 using namespace std;
 
-
 int randomInt(int lo, int hi);
 double randomDouble(double lo, double hi);
 
@@ -35,8 +34,6 @@ int stringToInt(string s);
 
 string doubleToString(double d);
 double stringToDouble(string s);
-
-
 
 string stripLeadingBlanks(string s);
 string stripTrailingBlanks(string s);

@@ -12,7 +12,6 @@
 #include "stdlib.h"
 #include <sstream>
 #include "../include/misc.h"
-#include "../include/RandGen.h"
 
 using namespace std;
 
@@ -105,21 +104,10 @@ string padRight(string s, char fill, unsigned int size)
 	return s;
 }
 
-//All of the following would work fine.
-//The first two give warnings. Try them out and read the warnings.
-//
-//itoa(x,temp,10);
-//_itoa(x,temp,10);
-//_itoa_s(x,temp,255,10);
-//
-//The last one is "safe" because it's guaranteed to not go beyond 255 characters.
-//In this case it can't happen but it would be safe even if temp was very small array as long as the third parameter was also appropriately small.
 string intToString(int x)
 {
 	string result;
 	char temp[256];
-	//itoa(x,temp,10);
-	//_itoa(x,temp,10);
 	_itoa_s(x, temp, 255, 10);
 	result = temp;
 	return result;
@@ -144,15 +132,8 @@ int stringToInt(string s)
 
 int dollarStringToInt(string s)
 {
-	//string s1 = s.substr(0,s.length()-3);
-	//string s2 = s.substr(s.length()-2);
-	//string s3 = s1 + s2;
-	//return stringToInt(s3);
-
-	// better way
 	string s1 = s.erase(s.length() - 3, 1);
 	return stringToInt(s1);
-
 }
 
 string intToDollarString(int x)
@@ -162,17 +143,6 @@ string intToDollarString(int x)
 	result.insert(result.length() - 2, ".");
 	return result;
 }
-
-
-//'A' is a char literal for the ascii value of a Capital A. (It's really just a one byte integer.)
-//
-//Adding a random value between 0 and 25 to the ascii value of A gives you the ascii value of a letter between A and Z.
-//
-//Play with it.
-//
-//cout<<(char)('A'+2)<<endl;
-//
-//prints a C on the screen.
 
 string randString(int numOfChars)
 {
@@ -184,7 +154,6 @@ string randString(int numOfChars)
 	return result;
 }
 
-
 string randNumberString(int numOfChars)
 {
 	string result;
@@ -194,37 +163,6 @@ string randNumberString(int numOfChars)
 	}
 	return result;
 }
-
-//int randInt(int lower,int upper)
-//{
-//	if(upper-lower<RAND_MAX)
-//	{
-//		return (rand()%(upper-lower))+lower;
-//	}
-//	else
-//	{
-//		int r=rand()*RAND_MAX+rand();
-//		return (r % (upper-lower))+lower;
-//	}
-//}
-
-int randInt(int lower, int upper)
-{
-	if (upper - lower<RAND_MAX)
-	{
-		int range = upper - lower;
-		int r = rand();
-		r = r % range;
-		r = r + lower;
-		return r;
-	}
-	else
-	{
-		int r = rand()*RAND_MAX + rand();
-		return (r % (upper - lower)) + lower;
-	}
-}
-
 
 string stripTrailingBlanks(string s)
 {
